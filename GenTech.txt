@@ -1,0 +1,34 @@
+ 1 уровень сложности: (1) Приведите 5-10 типовых бизнес-процессов для любой предметной области (кроме интернет-магазина), а также их соответствие по CRUD.
+
+Например Instagram
+- регистрация пользователя - Create
+- добавление постов. - Create
+- просмотр сторис - Read
+- изменения профиля - Update
+- удаление аккаунта - Delete
+
+В рамках БД "песочница"
+(2) Вывести название и стоимость товаров от 20 EUR.
+
+SELECT ProductName, price FROM PRODUCTS
+WHERE Price>=20
+
+
+(3) Вывести самый дорогой товар из категорий 5 и 8.
+
+SELECT * FROM Products WHERE CategoryID IN (5, 8)
+ORDER BY Price DESC LIMIT 1 
+
+(4) Вывести название и стоимость самого дешевого товара в USD.
+
+SELECT ProductName, price FROM PRODUCTS
+ORDER BY Price ASC 
+
+SELECT ProductName, Price 
+FROM Products
+ORDER BY Price ASC LIMIT 1
+WHERE price = price*1.09
+
+(5) Вывести имена клиентов, кроме тех, что из UK и USA.
+
+SELECT * FROM Customers WHERE Country NOT IN ("USA", "UK")
