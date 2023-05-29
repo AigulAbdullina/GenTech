@@ -1,0 +1,43 @@
+
+1. Добавить три пожертвования
+
+Insert into donations (donation_id, created_at, donator_id, amount, stream_id)
+	value (1, CURRENT_TIMESTAMP, 1, 500, 3),
+    	  (2, CURRENT_TIMESTAMP, 2, 450, 2),
+          (3, CURRENT_TIMESTAMP, 4, 1500, 1)
+
+2. Вывести сумму всех пожертвований
+
+SELECT 
+SUM(amount) AS sum_donations
+FROM donations
+
+3. Вывести информацию о пожертвованиях (имядоната, странадонатара, сумма)
+
+SELECT 
+	users.fullname, 
+	users.country, 
+	donations.amount
+FROM donations
+JOIN users ON donations.donator_id=users.user_id
+
+4. Вывести ТОП-1 донаторов по сумме всех донатов (имядонатара, суммавсех_донатов)
+
+SELECT users.fullname,
+	   user_id,
+	   SUM(donations.amount) AS sum_amount
+From users
+JOIN donations On users.user_id=donations.donator_id
+GROUP BY donator_id
+ORDER By sum_amount DESC
+Limit 1
+
+5. Вывести информацию о получателях донатов (имяпользователя, суммаполученных_донатов)
+
+SELECT 
+	users.fullname,
+	SUM(amount) AS total_amount
+FROM streams
+
+JOIN donations ON streams.stream_id=donations.stream_id
+JOIN users ON streams.author_id=users.user_id
