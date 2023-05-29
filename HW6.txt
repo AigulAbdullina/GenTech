@@ -1,0 +1,27 @@
+
+1.Опишите схему таблицу "расписание занятий"
+
+table timetable {
+  lesson_id int [pk, increment]
+  lesson_start timestamp 
+  lesson_finish timestamp
+  teacher_id int 
+  group_id int
+}
+
+2. Опишите схему таблицы "преподаватели"
+
+table teachers {
+  teacher_id int 
+  created_at timestamp
+  fullname varchar(64)
+  email varchar(64)
+}
+
+
+3. Вывести имена студентов и названия групп, в которых они состоят
+
+SELECT students.fullname, groups.name
+FROM students_attachments
+JOIN groups ON students_attachments.group_id=groups.group_id
+JOIN students ON students_attachments.student_id=students.student_id
